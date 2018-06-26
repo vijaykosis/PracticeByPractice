@@ -26,8 +26,10 @@ import java.util.Stack;
 public class Solution {
 	public ArrayList<Integer> plusOne(ArrayList<Integer> A) {
 		ArrayList<Integer> result = new ArrayList<>();
+		
 		Stack<Integer> stack = new Stack<>();
 		int carry = 1;
+	
 		for (int i = A.size() -1 ; i >= 0 ; i--) {
 			int digit = A.get(i);
 						

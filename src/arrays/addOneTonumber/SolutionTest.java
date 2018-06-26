@@ -41,8 +41,8 @@ class SolutionTest {
 	
 	@Test
 	void testPlusOne2() {
-		ArrayList<Integer> A = new ArrayList<>(Arrays.asList(0,0,9,9,9));
-		ArrayList<Integer> B = new ArrayList<>(Arrays.asList(1,0,0,0));
+		ArrayList<Integer> A = new ArrayList<>(Arrays.asList(9,0,0,0,9,9,9));
+		ArrayList<Integer> B = new ArrayList<>(Arrays.asList(9,0,0,1,0,0,0));
 		
 		ArrayList<Integer> R = solution.plusOne(A);
 		
