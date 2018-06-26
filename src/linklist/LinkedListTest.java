@@ -88,4 +88,37 @@ class LinkedListTest {
 		list.add(5);
 	    assertThrows(ArrayIndexOutOfBoundsException.class,()->{list.add(6,-1); } );
 	}
+	
+	@Test
+	void testRemoveFirst() {
+		LinkedList list = new LinkedList(1);
+		list.add(2);
+		list.add(3);
+		list.add(4);
+		list.add(5);	
+		list.removefirst();
+		assertEquals("2->3->4->5", list.toString());
+	}
+	
+	@Test
+	void testRemoveLast() {
+		LinkedList list = new LinkedList(1);
+		list.add(2);
+		list.add(3);
+		list.add(4);
+		list.add(5);	
+		list.removeLast();
+		assertEquals("1->2->3->4", list.toString());
+	}
+	
+	@Test
+	void testLinkListAsStack() {
+		LinkedList list = new LinkedList(1);
+		list.add(2, 0);
+		list.add(3, 0);
+		list.add(4, 0);
+		list.removefirst();
+		assertEquals("3->2->1", list.toString());
+	}
+	
 }

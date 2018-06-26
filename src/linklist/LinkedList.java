@@ -7,48 +7,83 @@ public class LinkedList {
 
 	private int length;
 
-	LinkedList(int data) {
+	private void buildHeadTail(int data) {
 		this.head = new ListNode(data);
 		this.tail = head;
 		length = 1;
 	}
 
+	LinkedList(int data) {
+		buildHeadTail(data);
+	}
+
 	public void add(int data) {
 		ListNode node = new ListNode(data);
+		if (head == null || tail == null) {
+			buildHeadTail(data);
+			return;
+		}
 		tail.next = node;
 		tail = node;
 		length++;
 	}
-	
+
 	public void addTop(int data) {
 		ListNode node = new ListNode(data);
 		node.next = head;
 		head = node;
 		length++;
 	}
-	
+
 	public void add(int data, int index) {
-		if(index < 0 || index > length) {
+		if (index < 0 || index > length) {
 			throw new ArrayIndexOutOfBoundsException();
-		}		
+		}
 		ListNode node = new ListNode(data);
 		ListNode prev = null;
-		ListNode next = null;
 		ListNode cur = head;
-		while(index > 0 ) {
+		while (index > 0) {
 			prev = cur;
 			cur = cur.next;
 			index--;
 		}
-		if(prev == null) {
+		if (prev == null) {
 			node.next = head;
 			head = node;
-		}else {
+		} else {
 			prev.next = node;
 			node.next = cur;
-			
+
 		}
 		length++;
+	}
+
+	public void removefirst() {
+		if (head == null)
+			throw new EmptyListException("list is empty");
+		ListNode newhead = head.next;
+		head = null;
+		head = newhead;
+		
+		length--;
+	}
+
+	public void removeLast() {
+		if (head == null)
+			throw new EmptyListException("list is empty");
+		ListNode prev = null;
+		ListNode cur  = head;
+		while(cur != tail && cur.next != null) {
+			prev = cur;
+			cur = cur.next;
+		}
+		if(prev == null) {
+			head = tail = null;
+		}else {
+			prev.next = null;
+			tail = prev;	
+		}		
+		length--;
 	}
 	/*
 	 * public void remove(int data) { ListNode node = new ListNode(data); tail.next
@@ -98,13 +133,14 @@ public class LinkedList {
 	public String toString() {
 		StringBuilder stringData = new StringBuilder();
 		ListNode node = this.head;
-		while (node != null) {			
+		while (node != null) {
 			stringData.append(node.toString());
 			node = node.next;
-			if(node != null) {
+			if (node != null) {
 				stringData.append("->");
 			}
 		}
 		return stringData.toString();
 	}
+
 }
