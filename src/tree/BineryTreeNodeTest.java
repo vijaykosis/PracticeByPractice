@@ -30,35 +30,19 @@ class BineryTreeNodeTest {
 	}
 
 	@Test
-	void testPreOrder() {
-		br.preOrder(br);
-		System.out.println("");
-	}
-
-	@Test
 	void testPreOrder1() {
 		List<Integer> ddd = br.preOrderA(br);
 		assertArrayEquals(Arrays.asList(1, 2, 4, 5, 3, 6, 7).toArray(), ddd.toArray());
 	}
 
-	@Test
-	void testInOrder() {
-		br.inOrder(br);
-		System.out.println("");
-	}
 
 	@Test
 	void testInOrderA1() {
 		List<Integer> ddd = br.inOrderA(br);
-		System.out.println("dd" + ddd);
 		assertArrayEquals(Arrays.asList(4, 2, 5, 1, 6, 3, 7).toArray(), ddd.toArray());
 	}
 
-	@Test
-	void testPostOrder() {
-		br.postOrder(br);
-		System.out.println("4 5 2 6 7 3 1 Post^");
-	}
+	
 
 	@Test
 	void testPostOrderA1() {
@@ -106,5 +90,59 @@ class BineryTreeNodeTest {
 	void testfindInBinneryTreeNotWRFound() {		
 		boolean isFound = br.findInBTWR(br, 8);
 		assertFalse(isFound);
+	}
+	
+	@Test
+	void testInsterInBinneryTree() {		
+		BineryTreeNode.insterInBinneryTree(br, 8);
+		List<Integer> ddd = br.levelOrderA(br);		
+		assertArrayEquals(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8).toArray(), ddd.toArray());
+	}
+	
+	@Test
+	void testSizeOfTree() {		
+		int size = BineryTreeNode.size(br);
+		assertEquals(7, size);
+	}
+	@Test
+	void testlevelOrderTreversalInreverse() {		
+		List<Integer> ddd = BineryTreeNode.levelOrderTreversalInreverse(br);	
+		assertArrayEquals(Arrays.asList(7,6,5,4,3,2,1).toArray(), ddd.toArray());
+	}
+	
+	
+	@Test
+	void testmaxDeptResursive() {
+		int ddd = BineryTreeNode.maxDeptResursive(br);	
+		assertEquals(3, ddd);
+	}
+	
+	@Test
+	void testmaxDeptItrative() {
+		int ddd = BineryTreeNode.maxDeptItrative(br);	
+		assertEquals(3, ddd);
+	}
+	@Test
+	void mirrorTest() {
+		BineryTreeNode mirror = BineryTreeNode.mirror(br);
+		List<Integer> ddd = BineryTreeNode.levelOrderA(mirror);	
+		assertArrayEquals(Arrays.asList(1,3,2,7,6,5,4).toArray(), ddd.toArray());
+	}
+	
+	@Test
+	void buildBTpreIn() {
+		List<Integer> pre = br.preOrderA(br);
+		List<Integer> in = br.inOrderA(br);
+		int [] inA =  in.stream().mapToInt(Integer::intValue).toArray();
+		int [] preA = pre.stream().mapToInt(Integer::intValue).toArray();
+		BineryTreeNode bt = BineryTreeNode.build(inA, preA);
+		List<Integer> ddd = br.levelOrderA(br);		
+		assertArrayEquals(Arrays.asList(1, 2, 3, 4, 5, 6, 7).toArray(), ddd.toArray());
+	}
+	
+	@Test
+	void getAllAncen() {
+		List<Integer> ddd = BineryTreeNode.getAllAncen(br, 5);		
+		System.out.println(ddd);
 	}
 }
